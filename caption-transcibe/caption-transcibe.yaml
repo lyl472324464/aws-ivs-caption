@@ -1,0 +1,40 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: caption-transcibe
+  labels:
+    app: caption-transcibe
+spec:
+  minReadySeconds: 120
+  progressDeadlineSeconds: 600
+  replicas: 1
+  selector:
+    matchLabels:
+      app: caption-transcibe
+  template:
+    metadata:
+      labels:
+        app: caption-transcibe
+    spec:
+      containers:
+      - name: caption-transcibe
+        image: nginx
+        ports:
+        - containerPort: 8000
+          name: tcp8000
+          protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: "caption-transcibe"
+spec:
+  selector:
+    app: caption-transcibe
+  type: ClusterIP
+  ports:
+  - protocol: TCP
+    name: tcp8000
+    port: 8000
+    targetPort: 8000

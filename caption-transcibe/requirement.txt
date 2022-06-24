@@ -1,0 +1,6 @@
+fastapi[all]
+pymysql
+uvicorn[standard]
+gunicorn
+nacos-sdk-python
+DBUtils
