@@ -1,0 +1,50 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: caption-stream
+  labels:
+    app: caption-stream
+spec:
+  minReadySeconds: 120
+  progressDeadlineSeconds: 600
+  replicas: 1
+  selector:
+    matchLabels:
+      app: caption-stream
+  template:
+    metadata:
+      labels:
+        app: caption-stream
+    spec:
+      containers:
+      - name: caption-stream
+        image: nginx
+        ports:
+        - containerPort: 1935
+          name: tcp1935
+          protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: caption-stream
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: external
+    service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip
+    service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
+    service.beta.kubernetes.io/aws-load-balancer-ssl-ports: tls
+    service.beta.kubernetes.io/aws-load-balancer-ssl-cert:  aiaissl
+spec:
+  ports:
+    - port: 1935
+      name: tcp1935
+      targetPort: 1935
+      protocol: TCP
+    - port: 443
+      name: tls
+      targetPort: 1935
+      protocol: TCP
+  type: LoadBalancer
+  selector:
+    app: caption-stream
