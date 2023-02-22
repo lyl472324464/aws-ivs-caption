@@ -4,7 +4,7 @@
   "description": "Transcribe server folder",
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.42.0",
-    "@aws-sdk/client-transcribe-streaming": "^3.40.0",
+    "@aws-sdk/client-transcribe-streaming": "^3.276.0",
     "agora-access-token": "^2.0.4",
     "aws-sdk": "^2.1034.0",
     "uuid": "^8.3.2",
