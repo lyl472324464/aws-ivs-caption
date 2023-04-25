@@ -6,7 +6,7 @@
     "@aws-sdk/client-dynamodb": "^3.42.0",
     "@aws-sdk/client-transcribe-streaming": "^3.40.0",
     "agora-access-token": "^2.0.4",
-    "aws-sdk": "^2.1034.0",
+    "aws-sdk": "^2.1354.0",
     "uuid": "^8.3.2",
     "ws": "^8.2.3",
     "@google-cloud/speech": "^4.10.0"
