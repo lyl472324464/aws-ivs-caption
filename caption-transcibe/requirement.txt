@@ -4,3 +4,4 @@ uvicorn[standard]
 gunicorn
 nacos-sdk-python
 DBUtils
+fastapi>=0.109.1 # not directly required, pinned by Snyk to avoid a vulnerability
